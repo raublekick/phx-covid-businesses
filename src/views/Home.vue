@@ -103,7 +103,10 @@ export default {
       filter: "",
       customerMasks: null,
       employeeMasks: null,
-      center: latLng(33.4515, -112.07)
+      center: latLng(
+        process.env.VUE_APP_CENTER_LAT || 33.4515,
+        process.env.VUE_APP_CENTER_LNG || -112.07
+      )
     };
   },
   components: {
