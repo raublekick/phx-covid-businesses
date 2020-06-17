@@ -63,6 +63,10 @@
           </b-field>
         </section>
 
+        <b-notification :closable="false" has-icon icon="information">
+          Click a pin to go to that item on the map.
+        </b-notification>
+
         <business-list class="mt-4" :items="filtered" @clicked="setCenter" />
       </div>
     </div>
