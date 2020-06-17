@@ -15,7 +15,21 @@
         :lat-lng.sync="item.latlng"
         :icon="item.icon"
       >
-        <l-popup :content="item.name" />
+        <l-popup>
+          <h1>
+            <a :href="item.url" target="_blank">{{ item.name }}</a>
+          </h1>
+          <div>{{ item.address }}</div>
+          <div>
+            <strong>Employees wearing masks:</strong> {{ item.employeeMasks }}
+          </div>
+          <div>
+            <strong>Customers wearing masks:</strong> {{ item.customerMasks }}
+          </div>
+          <div v-if="item.other">
+            <strong>Other measures taken:</strong> {{ item.other }}
+          </div>
+        </l-popup>
       </l-marker>
     </l-map>
   </div>
@@ -69,7 +83,12 @@ export default {
         return {
           id: item.BID,
           name: item.Name,
-          latlng: [item.LAT, item.LNG]
+          latlng: [item.LAT, item.LNG],
+          url: item.URL,
+          address: item.Address,
+          employeeMasks: item.empMask,
+          customerMasks: item.custMask,
+          other: item.Other
         };
       });
     }
