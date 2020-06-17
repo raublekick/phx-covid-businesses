@@ -70,7 +70,7 @@ export default {
       return _.map(this.items, item => {
         return {
           id: item.BID,
-          name: item.name,
+          name: item.Name,
           latlng: [item.LAT, item.LNG]
         };
       });
