@@ -14,6 +14,7 @@
             <a :href="item.url" target="_blank">{{ item.name }}</a>
           </p>
           <p class="subtitle is-6">{{ item.address }}</p>
+          <p>{{ item.businessType }}</p>
         </div>
       </div>
 
@@ -35,6 +36,12 @@
         </div>
         <b-taglist>
           <b-tag v-for="tag in tags" :key="tag" type="is-primary">{{
+            tag
+          }}</b-tag>
+        </b-taglist>
+
+        <b-taglist>
+          <b-tag v-for="tag in services" :key="tag" type="is-primary">{{
             tag
           }}</b-tag>
         </b-taglist>
@@ -80,6 +87,11 @@ export default {
   computed: {
     tags() {
       return _.filter(this.item.otherTags, tag => {
+        return tag != "";
+      });
+    },
+    services() {
+      return _.filter(this.item.serviceTags, tag => {
         return tag != "";
       });
     }

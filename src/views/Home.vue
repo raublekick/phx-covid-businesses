@@ -43,6 +43,35 @@
               >
               </b-input>
             </b-field>
+
+            <b-field label="Business Type">
+              <b-select placeholder="Select a value" v-model="businessType">
+                <option value="">All</option>
+                <option value="Restaurant / Bar / Food Service"
+                  >Restaurant / Bar / Food Service</option
+                >
+                <option value="Grocery Store">Grocery Store</option>
+                <option value="Retail">Retail</option>
+                <option value="Services">Services</option>
+                <option value="Other">Other</option>
+              </b-select>
+            </b-field>
+
+            <b-field label="Services Offered">
+              <b-select placeholder="Select a value" v-model="services">
+                <option value="">All</option>
+                <option value="Dine-in / In-store shopping"
+                  >Dine-in / In-store shopping</option
+                >
+                <option value="Take-out / Pick-up">Take-out / Pick-up</option>
+                <option value="Retail">Retail</option>
+                <option value="Delivery">Delivery</option>
+                <option value="Curbside / Touchless Pick-up"
+                  >Curbside / Touchless Pick-up</option
+                >
+              </b-select>
+            </b-field>
+
             <b-field label="Employees wearing masks">
               <b-select placeholder="Select a value" v-model="employeeMasks">
                 <option value="">All</option>
@@ -97,12 +126,18 @@ export default {
           other: item.Other,
           otherTags: item.Other.split(", "),
           notes: item.Notes,
-          zone: item.ZONE
+          zone: item.ZONE,
+          businessType: item.BizType,
+          businessTypeTags: item.BizType.split(", "),
+          services: item.Services,
+          serviceTags: item.Services.split(", ")
         };
       }),
       filter: "",
       customerMasks: null,
       employeeMasks: null,
+      businessType: null,
+      services: null,
       center: latLng(
         process.env.VUE_APP_CENTER_LAT || 33.4515,
         process.env.VUE_APP_CENTER_LNG || -112.07
@@ -119,6 +154,14 @@ export default {
 
       if (this.filter) {
         filtered = this.search(filtered, this.filter);
+      }
+
+      if (this.businessType) {
+        filtered = this.filterBusinessType(filtered, this.businessType);
+      }
+
+      if (this.services) {
+        filtered = this.filterServices(filtered, this.services);
       }
 
       if (this.employeeMasks) {
@@ -169,6 +212,16 @@ export default {
         if (include) {
           _.isArray(collection) ? memo.push(val) : (memo[key] = val);
         }
+      });
+    },
+    filterBusinessType(collection, value) {
+      return _.filter(collection, function(object) {
+        return object.businessType.includes(value);
+      });
+    },
+    filterServices(collection, value) {
+      return _.filter(collection, function(object) {
+        return object.services.includes(value);
       });
     },
     filterEmployeeMasks(collection, value) {

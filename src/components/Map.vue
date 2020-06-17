@@ -27,6 +27,7 @@
             <a :href="item.url" target="_blank">{{ item.name }}</a>
           </h1>
           <div>{{ item.address }}</div>
+          <div>{{ item.businessType }}</div>
           <div>
             <strong>Employees wearing masks:</strong> {{ item.employeeMasks }}
           </div>
