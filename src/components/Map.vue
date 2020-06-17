@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <l-map
       v-show="items.length"
       :zoom="zoom"
@@ -9,7 +9,7 @@
     >
       <l-tile-layer :url="url" :attribution="attribution" :id="id" />
       <l-marker
-        v-for="item in mappedItems"
+        v-for="item in items"
         :key="item.id"
         :draggable="false"
         :lat-lng.sync="item.latlng"
@@ -38,13 +38,12 @@
         </l-popup>
       </l-marker>
     </l-map>
-  </div>
+  </section>
 </template>
 
 <script>
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from "vue2-leaflet";
-import * as _ from "lodash";
 import "leaflet/dist/leaflet.css";
 // import { Icon } from "leaflet";
 
@@ -92,23 +91,7 @@ export default {
     LPopup,
     LIcon
   },
-  computed: {
-    mappedItems() {
-      return _.map(this.items, item => {
-        return {
-          id: item.BID,
-          name: item.Name,
-          latlng: [item.LAT, item.LNG],
-          url: item.URL,
-          address: item.Address,
-          employeeMasks: item.empMask,
-          customerMasks: item.custMask,
-          other: item.Other,
-          zone: item.ZONE
-        };
-      });
-    }
-  }
+  computed: {}
 };
 </script>
 
