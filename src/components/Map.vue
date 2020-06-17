@@ -18,6 +18,7 @@
           :icon-url="icons[item.zone]"
           :icon-size="iconSize"
           :icon-anchor="iconAnchor"
+          :popup-anchor="popupAnchor"
         >
         </l-icon>
         <l-popup>
@@ -68,8 +69,9 @@ export default {
       mapOptions: {
         zoomSnap: 0.5
       },
-      iconSize: [32, 37],
-      iconAnchor: [16, 37],
+      iconSize: [45, 37],
+      iconAnchor: [11, 36],
+      popupAnchor: [0, -26],
       icons: [
         require("../assets/dark-blue.png"),
         require("../assets/dark-red.png"),
