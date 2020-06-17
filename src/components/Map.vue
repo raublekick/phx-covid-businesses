@@ -16,7 +16,6 @@
         :icon="item.icon"
       >
         <l-popup :content="item.name" />
-        <l-tooltip :content="item.name" />
       </l-marker>
     </l-map>
   </div>
