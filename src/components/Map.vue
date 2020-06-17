@@ -23,7 +23,7 @@
 
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LTooltip, LPopup } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import * as _ from "lodash";
 import "leaflet/dist/leaflet.css";
 
@@ -61,7 +61,6 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LTooltip,
     LPopup
   },
   computed: {
