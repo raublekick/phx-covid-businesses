@@ -9,10 +9,14 @@
       <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
         Home
       </b-navbar-item>
-      <b-navbar-item href="#">
+      <b-navbar-item
+        href="https://docs.google.com/forms/d/1ikzeLf68sLK1XZqIoXMKJUL7ooxR9n7744ESVJSjskE"
+      >
         Add Business
       </b-navbar-item>
-      <b-navbar-item href="#">
+      <b-navbar-item
+        href="https://docs.google.com/spreadsheets/d/13cf0sM_IS6TAH09J3KCVOwZdHyakwG1BmgEWwqHvCsU"
+      >
         View Results
       </b-navbar-item>
       <b-navbar-dropdown label="Info">
