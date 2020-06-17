@@ -13,6 +13,7 @@
         :key="item.id"
         :draggable="false"
         :lat-lng.sync="item.latlng"
+        ref="markersRef"
       >
         <l-icon
           :icon-url="icons[item.zone]"
@@ -21,7 +22,7 @@
           :popup-anchor="popupAnchor"
         >
         </l-icon>
-        <l-popup>
+        <l-popup v-show="true">
           <h1>
             <a :href="item.url" target="_blank">{{ item.name }}</a>
           </h1>
@@ -45,6 +46,7 @@
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from "vue2-leaflet";
 import "leaflet/dist/leaflet.css";
+import * as _ from "lodash";
 // import { Icon } from "leaflet";
 
 // delete Icon.Default.prototype._getIconUrl;
@@ -93,7 +95,25 @@ export default {
     LPopup,
     LIcon
   },
-  computed: {}
+  computed: {},
+  watch: {
+    center: function(val) {
+      //this.markerObjects[selectedIndex].openTooltip();
+      console.log(val);
+      console.log(this.markerObjects);
+
+      _.forEach(this.markerObjects, item => {
+        if (item._latlng.lat === val.lat && item._latlng.lng === val.lng) {
+          item.openPopup();
+        }
+      });
+    }
+  },
+  mounted: function() {
+    this.$nextTick(() => {
+      this.markerObjects = this.$refs.markersRef.map(ref => ref.mapObject);
+    });
+  }
 };
 </script>
 
