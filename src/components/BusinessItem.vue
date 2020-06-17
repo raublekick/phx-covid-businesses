@@ -34,7 +34,7 @@
           <strong>Other measures taken:</strong>
         </div>
         <b-taglist>
-          <b-tag v-for="tag in item.otherTags" :key="tag" type="is-primary">{{
+          <b-tag v-for="tag in tags" :key="tag" type="is-primary">{{
             tag
           }}</b-tag>
         </b-taglist>
@@ -51,6 +51,7 @@
 </template>
 <script>
 import ReadMore from "@raublekick/vue-read-more";
+import * as _ from "lodash";
 
 export default {
   name: "BusinessItem",
@@ -76,7 +77,13 @@ export default {
     ReadMore
   },
 
-  computed: {}
+  computed: {
+    tags() {
+      return _.filter(this.item.otherTags, tag => {
+        return tag != "";
+      });
+    }
+  }
 };
 </script>
 <style lang="sass"></style>
