@@ -11,7 +11,7 @@
       <l-marker
         v-for="item in mappedItems"
         :key="item.id"
-        :draggable="true"
+        :draggable="false"
         :lat-lng.sync="item.latlng"
         :icon="item.icon"
       >
