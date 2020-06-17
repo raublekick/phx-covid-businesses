@@ -18,6 +18,14 @@
               href="https://docs.google.com/forms/d/1ikzeLf68sLK1XZqIoXMKJUL7ooxR9n7744ESVJSjskE"
               >Fill out form</b-button
             >
+            - or -
+            <b-button
+              tag="a"
+              type="is-info"
+              target="_blank"
+              href="https://docs.google.com/spreadsheets/d/13cf0sM_IS6TAH09J3KCVOwZdHyakwG1BmgEWwqHvCsU"
+              >View submission data</b-button
+            >
           </div>
         </b-message>
 

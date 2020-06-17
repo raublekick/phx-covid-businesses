@@ -13,8 +13,13 @@
         :key="item.id"
         :draggable="false"
         :lat-lng.sync="item.latlng"
-        :icon="item.icon"
       >
+        <l-icon
+          :icon-url="icons[item.zone]"
+          :icon-size="iconSize"
+          :icon-anchor="iconAnchor"
+        >
+        </l-icon>
         <l-popup>
           <h1>
             <a :href="item.url" target="_blank">{{ item.name }}</a>
@@ -37,18 +42,17 @@
 
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup, LIcon } from "vue2-leaflet";
 import * as _ from "lodash";
 import "leaflet/dist/leaflet.css";
+// import { Icon } from "leaflet";
 
-import { Icon } from "leaflet";
-
-delete Icon.Default.prototype._getIconUrl;
-Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
-});
+// delete Icon.Default.prototype._getIconUrl;
+// Icon.Default.mergeOptions({
+//   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+//   iconUrl: require("leaflet/dist/images/marker-icon.png"),
+//   shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+// });
 
 export default {
   name: "Map",
@@ -63,7 +67,15 @@ export default {
         'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       mapOptions: {
         zoomSnap: 0.5
-      }
+      },
+      iconSize: [32, 37],
+      iconAnchor: [16, 37],
+      icons: [
+        require("../assets/dark-blue.png"),
+        require("../assets/dark-red.png"),
+        require("../assets/dark-green.png"),
+        require("../assets/dark-yellow.png")
+      ]
     };
   },
   props: {
@@ -75,7 +87,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPopup
+    LPopup,
+    LIcon
   },
   computed: {
     mappedItems() {
@@ -88,7 +101,8 @@ export default {
           address: item.Address,
           employeeMasks: item.empMask,
           customerMasks: item.custMask,
-          other: item.Other
+          other: item.Other,
+          zone: item.ZONE
         };
       });
     }
