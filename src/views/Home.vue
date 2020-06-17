@@ -188,4 +188,10 @@ export default {
 .mt-4 {
   margin-top: 1em;
 }
+.mr-4 {
+  margin-right: 1em;
+}
+.ml-4 {
+  margin-left: 1em;
+}
 </style>

@@ -21,14 +21,13 @@
       >
         View Results
       </b-navbar-item>
-      <b-navbar-dropdown label="Info">
-        <b-navbar-item type="navbar-item" :to="{ name: 'About' }">
-          About
-        </b-navbar-item>
-        <b-navbar-item href="#">
-          Contact
-        </b-navbar-item>
-      </b-navbar-dropdown>
+      <b-navbar-item
+        tag="router-link"
+        type="navbar-item"
+        :to="{ name: 'About' }"
+      >
+        About
+      </b-navbar-item>
     </template>
 
     <template slot="end"> </template>
