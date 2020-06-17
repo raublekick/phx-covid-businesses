@@ -6,7 +6,7 @@
         <!-- Add icon if saved -->
         <div class="media-left">
           <figure class="image is-48x48" @click="clicked(item.latlng)">
-            <img :src="icons[item.zone]" :alt="item.title" />
+            <a href="#"><img :src="icons[item.zone]" :alt="item.title"/></a>
           </figure>
         </div>
         <div class="media-content">
