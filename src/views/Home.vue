@@ -29,7 +29,7 @@
           </div>
         </b-message>
 
-        <map-view :items="filtered" />
+        <map-view :items="filtered" :center="center" />
 
         <section class="mt-4">
           <b-field grouped>
@@ -63,7 +63,7 @@
           </b-field>
         </section>
 
-        <business-list class="mt-4" :items="filtered" />
+        <business-list class="mt-4" :items="filtered" @clicked="setCenter" />
       </div>
     </div>
   </div>
@@ -73,6 +73,7 @@
 // @ is an alias to /src
 import MapView from "@/components/Map";
 import BusinessList from "@/components/BusinessList";
+import { latLng } from "leaflet";
 import * as _ from "lodash";
 import businesses from "@/businesses";
 
@@ -97,7 +98,8 @@ export default {
       }),
       filter: "",
       customerMasks: null,
-      employeeMasks: null
+      employeeMasks: null,
+      center: latLng(33.4515, -112.07)
     };
   },
   components: {
@@ -125,6 +127,9 @@ export default {
   },
 
   methods: {
+    setCenter(value) {
+      this.center = latLng(value[0], value[1]);
+    },
     search(collection, text) {
       var that = this;
       return _.filter(collection, function(object) {

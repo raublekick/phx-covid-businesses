@@ -59,7 +59,6 @@ export default {
   data() {
     return {
       zoom: 12,
-      center: latLng(33.4515, -112.07),
       id: "mapbox/streets-v11",
       url:
         "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
@@ -82,6 +81,9 @@ export default {
   props: {
     items: {
       type: Array
+    },
+    center: {
+      default: latLng(33.4515, -112.07)
     }
   },
   components: {

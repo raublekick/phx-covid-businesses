@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="mt-4" v-for="item in items" :key="item.BID">
-      <business-item :item="item" />
+      <business-item @clicked="clicked" :item="item" />
     </div>
   </section>
 </template>
@@ -20,6 +20,11 @@ export default {
   },
   components: {
     BusinessItem
+  },
+  methods: {
+    clicked(value) {
+      this.$emit("clicked", value);
+    }
   }
 };
 </script>

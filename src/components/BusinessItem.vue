@@ -5,7 +5,7 @@
       <div class="media">
         <!-- Add icon if saved -->
         <div class="media-left">
-          <figure class="image is-48x48">
+          <figure class="image is-48x48" @click="clicked(item.latlng)">
             <img :src="icons[item.zone]" :alt="item.title" />
           </figure>
         </div>
@@ -82,6 +82,11 @@ export default {
       return _.filter(this.item.otherTags, tag => {
         return tag != "";
       });
+    }
+  },
+  methods: {
+    clicked(value) {
+      this.$emit("clicked", value);
     }
   }
 };
