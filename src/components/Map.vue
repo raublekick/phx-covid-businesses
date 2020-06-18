@@ -37,6 +37,7 @@
           <div v-if="item.other">
             <strong>Other measures taken:</strong> {{ item.other }}
           </div>
+          <div>Last updated: {{ item.timestamp | formatDateTime }}</div>
         </l-popup>
       </l-marker>
     </l-map>

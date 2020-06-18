@@ -49,9 +49,9 @@
         <read-more :text="item.notes" align="right"></read-more>
 
         <br />
-        <!-- <time :datetime="item.updatedAt"
-          >Updated: {{ item.updatedAt | formatDateTime }}</time
-        > -->
+        <time :datetime="item.timestamp"
+          >Last updated: {{ item.timestamp | formatDateTime }}</time
+        >
       </div>
     </div>
   </div>

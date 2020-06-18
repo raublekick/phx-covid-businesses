@@ -130,7 +130,8 @@ export default {
           businessType: item.BizType,
           businessTypeTags: item.BizType.split(", "),
           services: item.Services,
-          serviceTags: item.Services.split(", ")
+          serviceTags: item.Services.split(", "),
+          timestamp: item.Timestamp
         };
       }),
       filter: "",
