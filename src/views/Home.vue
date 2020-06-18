@@ -32,7 +32,7 @@
         <map-view :items="filtered" :center="center" />
 
         <section class="mt-4">
-          <b-field grouped>
+          <b-field grouped group-multiline>
             <b-field label="Search">
               <b-input
                 v-model="filter"
