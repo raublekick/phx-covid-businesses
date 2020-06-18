@@ -2,7 +2,8 @@
   <b-navbar>
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
-        <b-icon icon="handshake" size="is-large" type="is-primary"> </b-icon>
+        <!-- <b-icon icon="handshake" size="is-large" type="is-primary"> </b-icon> -->
+        <img :src="require('../assets/mask.png')" title="Preventitive mask" />
       </b-navbar-item>
     </template>
     <template slot="start">
