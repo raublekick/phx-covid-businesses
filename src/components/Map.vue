@@ -99,10 +99,6 @@ export default {
   computed: {},
   watch: {
     center: function(val) {
-      //this.markerObjects[selectedIndex].openTooltip();
-      console.log(val);
-      console.log(this.markerObjects);
-
       _.forEach(this.markerObjects, item => {
         if (item._latlng.lat === val.lat && item._latlng.lng === val.lng) {
           item.openPopup();
