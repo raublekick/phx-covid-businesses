@@ -20,6 +20,12 @@
         </p>
 
         <p class="mt-4">
+          We currently use the latest response for a business location and trust
+          that it is accurate. Responses are manually updated on this website
+          with a delay of 1-2 days.
+        </p>
+
+        <p class="mt-4">
           This project is licensed under the MIT open source license.
           <a
             href="https://github.com/raublekick/phx-covid-businesses"

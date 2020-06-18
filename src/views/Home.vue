@@ -8,9 +8,12 @@
           has-icon
           aria-close-label="Close message"
         >
-          Responses are manually moderated and will typically be updated the
-          next day or so.
-          <div>
+          <p class="mt-4">
+            We currently use the latest response for a business location and
+            trust that it is accurate. Responses are manually updated on this
+            website with a delay of 1-2 days.
+          </p>
+          <div class="mt-4">
             <b-button
               tag="a"
               type="is-primary"
