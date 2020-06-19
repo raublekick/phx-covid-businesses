@@ -71,17 +71,17 @@
           role="alert"
         >
           <p>
-            The city of Phoenix has passed mandatory mask restrictions on June
-            19, 2020.
+            As of June 19, 2020 cities across the valley are beginning to issue
+            mask requirements.
             <a
-              href="https://www.phoenix.gov/cityclerksite/City%20Council%20Meeting%20Files/6-19%20Back-Up%20Information.pdf"
+              href="https://www.azfamily.com/news/continuing_coverage/coronavirus_coverage/list-these-arizona-cities-are-requiring-face-masks-in-public/article_83403294-b1a0-11ea-9c3a-abc7286a8c77.html"
               target="_blank"
-              >Read more</a
+              >Ongoing coverage</a
             >
           </p>
           <p>
-            Please keep in mind that entries older than this may now be
-            outdated.
+            Please keep in mind that entries older than this may no longer
+            reflect the current situation.
           </p>
         </b-notification>
       </div>
@@ -135,9 +135,52 @@ export default {
     },
     showWarning() {
       var now = moment();
+      // now THIS is coding
       if (
         this.item.address &&
         this.item.address.toLowerCase().includes("phoenix") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("avondale") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("chandler") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("gilbert") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("scottsdale") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("surprise") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("tempe") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      } else if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("tolleson") &&
         now.diff(this.item.timestamp, "days") > 0
       ) {
         return true;
