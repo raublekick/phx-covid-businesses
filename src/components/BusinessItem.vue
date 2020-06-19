@@ -50,8 +50,19 @@
 
         <br />
         <time :datetime="item.timestamp"
-          >Last updated: {{ item.timestamp | formatDateTime }}</time
-        >
+          >Last updated: {{ item.timestamp | formatDateTime }}
+
+          <b-notification
+            v-if="daysSinceUpdated > 14"
+            type="is-info"
+            has-icon
+            :closable="false"
+            role="alert"
+          >
+            It has been two or more weeks since this information has been
+            updated. Information displayed here may have changed.
+          </b-notification>
+        </time>
       </div>
     </div>
   </div>
@@ -59,6 +70,7 @@
 <script>
 import ReadMore from "@raublekick/vue-read-more";
 import * as _ from "lodash";
+import moment from "moment";
 
 export default {
   name: "BusinessItem",
@@ -94,6 +106,11 @@ export default {
       return _.filter(this.item.serviceTags, tag => {
         return tag != "";
       });
+    },
+    daysSinceUpdated() {
+      var now = moment();
+
+      return now.diff(this.item.timestamp, "days"); // 1
     }
   },
   methods: {
