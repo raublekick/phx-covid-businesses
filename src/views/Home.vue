@@ -32,6 +32,11 @@
           </div>
         </b-message>
 
+        <b-message title="Important update" type="is-warning" has-icon aria-close-icon="Close message" role="alert">
+          <p>The city of Phoenix has passed mandatory mask restrictions on June 19, 2020. <a href="https://www.phoenix.gov/cityclerksite/City%20Council%20Meeting%20Files/6-19%20Back-Up%20Information.pdf" target="_blank">Read more</a></p>
+          <p>Please keep in mind that entries older than this may now be outdated.</p>
+        </b-message>
+
         <map-view :items="filtered" :center="center" />
 
         <section class="mt-4">

@@ -63,6 +63,27 @@
             updated. Information displayed here may have changed.
           </b-notification>
         </time>
+        <b-notification
+          v-if="showWarning"
+          type="is-warning"
+          has-icon
+          :closable="false"
+          role="alert"
+        >
+          <p>
+            The city of Phoenix has passed mandatory mask restrictions on June
+            19, 2020.
+            <a
+              href="https://www.phoenix.gov/cityclerksite/City%20Council%20Meeting%20Files/6-19%20Back-Up%20Information.pdf"
+              target="_blank"
+              >Read more</a
+            >
+          </p>
+          <p>
+            Please keep in mind that entries older than this may now be
+            outdated.
+          </p>
+        </b-notification>
       </div>
     </div>
   </div>
@@ -111,6 +132,17 @@ export default {
       var now = moment();
 
       return now.diff(this.item.timestamp, "days"); // 1
+    },
+    showWarning() {
+      var now = moment();
+      if (
+        this.item.address &&
+        this.item.address.toLowerCase().includes("phoenix") &&
+        now.diff(this.item.timestamp, "days") > 0
+      ) {
+        return true;
+      }
+      return false;
     }
   },
   methods: {
