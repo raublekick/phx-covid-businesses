@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="map-section">
     <l-map
       v-show="items.length"
       :zoom="zoom"
@@ -116,5 +116,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+#map-section > * {
+  z-index: 1;
+}
+</style>

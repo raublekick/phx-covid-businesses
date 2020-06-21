@@ -1,9 +1,9 @@
 <template>
-  <b-navbar>
+  <b-navbar fixed-top :class="{'navigation-bar': true, shadow: scrolled}">
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
         <!-- <b-icon icon="handshake" size="is-large" type="is-primary"> </b-icon> -->
-        <img :src="require('../assets/mask.png')" title="Preventitive mask" />
+        <img :src="require('../assets/mask.png')" title="Preventative mask" />
       </b-navbar-item>
     </template>
     <template slot="start">
@@ -37,6 +37,30 @@
 <script>
 export default {
   name: "Navbar",
-  computed: {}
+  data() {
+    return {
+      scrolled: false
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll() {
+      this.scrolled = window.scrollY > 0;
+    }
+  }
 };
 </script>
+
+<style>
+.navigation-bar {
+  z-index: 10;
+}
+.navigation-bar.shadow {
+  box-shadow: 0px 0px 4px #666;
+}
+</style>
