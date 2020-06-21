@@ -51,17 +51,13 @@
         <br />
         <time :datetime="item.timestamp"
           >Last updated: {{ item.timestamp | formatDateTime }}
-
-          <b-notification
+          
+          <notification-icon
             v-if="daysSinceUpdated > 14"
-            type="is-info"
-            has-icon
-            :closable="false"
-            role="alert"
-          >
-            It has been two or more weeks since this information has been
-            updated. Information displayed here may have changed.
-          </b-notification>
+            message="It has been two or more weeks since this information has been updated. Information displayed here may have changed."
+            icon="alert"
+            level="warning"
+          />
         </time>
         <b-notification
           v-if="showWarning"
@@ -92,7 +88,7 @@
 import ReadMore from "@raublekick/vue-read-more";
 import * as _ from "lodash";
 import moment from "moment";
-
+import NotificationIcon from "./reusable/NotificationIcon";
 export default {
   name: "BusinessItem",
   data() {
@@ -114,6 +110,7 @@ export default {
   },
 
   components: {
+    NotificationIcon,
     ReadMore
   },
 
@@ -131,7 +128,7 @@ export default {
     daysSinceUpdated() {
       var now = moment();
 
-      return now.diff(this.item.timestamp, "days"); // 1
+      return now.diff(this.item.timestamp, "days");
     },
     showWarning() {
       var now = moment();
