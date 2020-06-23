@@ -1,7 +1,7 @@
 <template>
   <section>
-    <div class="mt-4" v-for="item in items" :key="item.BID">
-      <business-item @clicked="clicked" :item="item" />
+    <div class="mt-4" v-for="(item, i) in items" :key="item.BID">
+      <business-item @clicked="clicked" :item="item" :persistent-tooltip="i === 0" />
     </div>
   </section>
 </template>

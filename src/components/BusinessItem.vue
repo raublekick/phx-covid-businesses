@@ -5,9 +5,11 @@
       <div class="media">
         <!-- Add icon if saved -->
         <div class="media-left">
-          <figure class="image is-48x48" @click="clicked(item.latlng)">
-            <a href="#"><img :src="icons[item.zone]" :alt="item.title"/></a>
-          </figure>
+          <b-tooltip position="is-left" label="Go to this business on the map" :always="d_persistentTooltip" animated>
+            <figure @mouseenter="handleIconHover" class="image is-48x48" @click="clicked(item.latlng)">
+              <a href="#"><img :src="icons[item.zone]" :alt="item.title"/></a>
+            </figure>
+          </b-tooltip>
         </div>
         <div class="media-content">
           <p class="title is-4">
@@ -102,7 +104,8 @@ export default {
         require("../assets/dark-red.png"),
         require("../assets/dark-green.png"),
         require("../assets/dark-yellow.png")
-      ]
+      ],
+      d_persistentTooltip: false
     };
   },
 
@@ -110,6 +113,10 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    persistentTooltip: {
+      type: Boolean,
+      required: false
     }
   },
 
@@ -191,6 +198,14 @@ export default {
   methods: {
     clicked(value) {
       this.$emit("clicked", value);
+    },
+    handleIconHover() {
+      this.d_persistentTooltip = false;
+    }
+  },
+  mounted() {
+    if(this.persistentTooltip) {
+      this.d_persistentTooltip = true;
     }
   }
 };
