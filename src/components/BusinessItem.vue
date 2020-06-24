@@ -5,62 +5,78 @@
       <div class="media">
         <!-- Add icon if saved -->
         <div class="media-left">
-          <b-tooltip position="is-left" label="Go to this business on the map" :always="d_persistentTooltip" animated>
-            <figure @mouseenter="handleIconHover" class="image is-48x48" @click="clicked(item.latlng)">
-              <a href="#"><img :src="icons[item.zone]" :alt="item.title"/></a>
+          <b-tooltip
+            position="is-left"
+            label="Go to this business on the map"
+            :always="d_persistentTooltip"
+            animated
+          >
+            <figure
+              @mouseenter="handleIconHover"
+              class="image is-48x48"
+              @click="clicked(item.latlng)"
+            >
+              <a href="#">
+                <img :src="icons[item.zone]" :alt="item.title" />
+              </a>
             </figure>
           </b-tooltip>
         </div>
-        <div class="media-content">
+        <div class="media-content d-flex">
           <p class="title is-4">
             <a :href="item.url" target="_blank">{{ item.name }}</a>
           </p>
-          <p class="subtitle is-6">{{ item.address }}</p>
-          <p>{{ item.businessType }}</p>
+          <span class="subtitle is-6">{{ item.address }}</span>
+          <span>{{ item.businessType }}</span>
+        </div>
+        <div class="details">
+          <div class="last-updated" :class="{'warning': daysSinceUpdated > 14}">
+            <notification-icon
+              v-if="daysSinceUpdated > 14"
+              message="It has been two or more weeks since this information was last updated."
+              icon="alert"
+              level="warning"
+            />&nbsp;
+            <time
+              :datetime="item.timestamp"
+            >Last updated: {{ item.timestamp | formatDateTime }}</time>
+          </div>
+          <div class="mask-audit">
+            <div>
+              <b-icon icon="check" v-if="item.employeeMasks === 'Yes'"></b-icon>
+              <b-icon icon="help-circle-outline" v-if="item.employeeMasks === 'Maybe'"></b-icon>
+              <b-icon icon="cancel" v-if="item.employeeMasks === 'No'"></b-icon>
+              <strong>Employees wearing masks: {{item.employeeMasks}}</strong>
+            </div>
+
+            <div>
+              <b-icon icon="check" v-if="item.customerMasks === 'Yes'"></b-icon>
+              <b-icon icon="help-circle-outline" v-if="item.customerMasks === 'Maybe'"></b-icon>
+              <b-icon icon="cancel" v-if="item.customerMasks === 'No'"></b-icon>
+              <strong>Customers wearing masks: {{item.customerMasks}}</strong>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="content">
-        <!-- <a v-if="item.url" :href="item.url" target="_blank" :title="item.title"
-          ><b-icon icon="link" size="is-small"> </b-icon> {{ item.url }}
-        </a>-->
-
-        <div>
-          <strong>Employees wearing masks:</strong>
-          {{ item.employeeMasks }}
-        </div>
-        <div>
-          <strong>Customers wearing masks:</strong>
-          {{ item.customerMasks }}
-        </div>
         <div v-if="item.other">
-          <strong>Other measures taken:</strong>
+          <strong>Preventive measures taken:</strong>
         </div>
         <b-taglist>
-          <b-tag v-for="tag in tags" :key="tag" type="is-primary">{{
-            tag
-          }}</b-tag>
+          <b-tag v-for="tag in tags" :key="tag" type="is-primary">{{ tag }}</b-tag>
         </b-taglist>
 
+        <strong>Services:</strong>
         <b-taglist>
-          <b-tag v-for="tag in services" :key="tag" type="is-primary">{{
-            tag
-          }}</b-tag>
+          <b-tag v-for="tag in services" :key="tag" type="is-primary">{{ tag }}</b-tag>
         </b-taglist>
-
+        
+        <strong v-if="item.notes.length">Comments:</strong>
         <read-more :text="item.notes" align="right"></read-more>
 
         <br />
-        <time :datetime="item.timestamp"
-          >Last updated: {{ item.timestamp | formatDateTime }}
-          
-          <notification-icon
-            v-if="daysSinceUpdated > 14"
-            message="It has been two or more weeks since this information has been updated. Information displayed here may have changed."
-            icon="alert"
-            level="warning"
-          />
-        </time>
+
         <b-notification
           v-if="showWarning"
           type="is-warning"
@@ -74,8 +90,7 @@
             <a
               href="https://www.azfamily.com/news/continuing_coverage/coronavirus_coverage/list-these-arizona-cities-are-requiring-face-masks-in-public/article_83403294-b1a0-11ea-9c3a-abc7286a8c77.html"
               target="_blank"
-              >Ongoing coverage</a
-            >
+            >Ongoing coverage</a>
           </p>
           <p>
             Please keep in mind that entries older than this may no longer
@@ -133,63 +148,28 @@ export default {
       });
     },
     daysSinceUpdated() {
-      var now = moment();
-
-      return now.diff(this.item.timestamp, "days");
+      return moment().diff(this.item.timestamp, "days");
     },
     showWarning() {
-      var now = moment();
-      // now THIS is coding
-      if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("phoenix") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("avondale") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("chandler") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("gilbert") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("scottsdale") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("surprise") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("tempe") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      } else if (
-        this.item.address &&
-        this.item.address.toLowerCase().includes("tolleson") &&
-        now.diff(this.item.timestamp, "days") > 0
-      ) {
-        return true;
-      }
-      return false;
+      const cityList = [
+        "phoenix",
+        "avondale",
+        "chandler",
+        "gilbert",
+        "scottsdale",
+        "surprise",
+        "tempe",
+        "tolleson"
+      ];
+
+      return (
+        this.daysSinceUpdated > 0 &&
+        cityList.some(city => {
+          return (
+            this.item.address && this.item.address.toLowerCase().includes(city)
+          );
+        })
+      );
     }
   },
   methods: {
@@ -201,10 +181,35 @@ export default {
     }
   },
   mounted() {
-    if(this.persistentTooltip) {
+    if (this.persistentTooltip) {
       this.d_persistentTooltip = true;
     }
   }
 };
 </script>
-<style lang="sass"></style>
+<style>
+.media-content.d-flex {
+  display: flex;
+  flex-direction: column;
+}
+.media-content.d-flex span {
+  margin: 0;
+}
+.last-updated {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+.last-updated.warning {
+  border-bottom: 2px dashed #ffdd57;
+}
+.tags {
+  margin-bottom: 0px !important;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+</style>
