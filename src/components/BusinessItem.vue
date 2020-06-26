@@ -111,10 +111,10 @@ export default {
   data() {
     return {
       icons: [
-        require("../assets/dark-blue.png"),
-        require("../assets/dark-red.png"),
-        require("../assets/dark-green.png"),
-        require("../assets/dark-yellow.png")
+        require("../assets/pin-blue.png"),
+        require("../assets/pin-red.png"),
+        require("../assets/pin-green.png"),
+        require("../assets/pin-yellow.png")
       ],
       d_persistentTooltip: false
     };
