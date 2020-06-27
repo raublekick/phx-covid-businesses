@@ -35,6 +35,8 @@ VUE_APP_MAPBOX_KEY=/your key here/
 ## Reusable component descriptions
 
 ### Notification Icon
+The notification icon component is an icon that displays a tooltip upon hover.
+ 
 | Name | Type | Description|Values
 |------|------|------------|-----|
 |Icon|String|The material icon to display|&lt;any material icon name&gt;|
