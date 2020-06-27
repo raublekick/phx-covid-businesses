@@ -29,7 +29,7 @@
           type="is-primary"
           target="_blank"
           href="https://docs.google.com/forms/d/1ikzeLf68sLK1XZqIoXMKJUL7ooxR9n7744ESVJSjskE"
-          >Submit Your Experience</b-button
+          >Submit A Business</b-button
         >
       </b-navbar-item>
     </template>
