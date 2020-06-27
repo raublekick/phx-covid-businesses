@@ -20,7 +20,14 @@ export default {
       type: String,
       required: true,
       validator: value => {
-        return ["info", "warning", "error", "success"].includes(value);
+        return [
+          "info",
+          "warning",
+          "error",
+          "success",
+          "primary",
+          "link"
+        ].includes(value);
       }
     }
   }
