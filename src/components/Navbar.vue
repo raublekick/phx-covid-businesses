@@ -1,5 +1,5 @@
 <template>
-  <b-navbar fixed-top :class="{'navigation-bar': true, shadow: scrolled}">
+  <b-navbar fixed-top :class="{ 'navigation-bar': true, shadow: scrolled }">
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
         <!-- <b-icon icon="handshake" size="is-large" type="is-primary"> </b-icon> -->
@@ -12,15 +12,9 @@
       </b-navbar-item>
       <b-navbar-item
         target="_blank"
-        href="https://docs.google.com/forms/d/1ikzeLf68sLK1XZqIoXMKJUL7ooxR9n7744ESVJSjskE"
-      >
-        Add Business
-      </b-navbar-item>
-      <b-navbar-item
-        target="_blank"
         href="https://docs.google.com/spreadsheets/d/13cf0sM_IS6TAH09J3KCVOwZdHyakwG1BmgEWwqHvCsU"
       >
-        View Results
+        View Submission Data
       </b-navbar-item>
       <b-navbar-item
         tag="router-link"
@@ -28,6 +22,15 @@
         :to="{ name: 'About' }"
       >
         About
+      </b-navbar-item>
+      <b-navbar-item>
+        <b-button
+          tag="a"
+          type="is-primary"
+          target="_blank"
+          href="https://docs.google.com/forms/d/1ikzeLf68sLK1XZqIoXMKJUL7ooxR9n7744ESVJSjskE"
+          >Submit Your Experience</b-button
+        >
       </b-navbar-item>
     </template>
 
